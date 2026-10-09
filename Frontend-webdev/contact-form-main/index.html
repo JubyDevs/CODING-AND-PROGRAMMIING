@@ -14,51 +14,117 @@
   <title>Frontend Mentor | Contact form</title>
 </head>
 <body>
-
+  <div id="successMsg" role="dialog" aria-labelledby="Success Message">
+    <div id="successBox">
+      <div class="success-text">
+        <div class="img">
+          <img src="./assets/images/icon-success-check.svg" alt="icon of done">
+        </div>
+        <p>Message Sent!</p>        
+      </div>
+      <p>
+        Thanks for completing the form. We'll be in touch soon!
+      </p>
+    </div>
+  </div>
   <main>
-    <form>
-      <h1>Contact Us</h1>
+    <form role="form" aria-labelledby="Contact Form" novalidate>
 
-      <label for="firstName">First Name <span class="required">*</span></label>
+        <h1>Contact Us</h1>
+
+        <div class="names">
+
+          <div>
+            <label for="firstName">
+              First Name <span class="required">*</span>
+            </label>
+            <br>
+            <input type="text" name="firstName" id="firstName" class="firstError">
+
+            <p class="requiredText firstErr" id="fErrorMsg">
+              This field is required
+            </p>
+          </div>
+
+
+          <br>
+
+          <div>
+            <label for="lastName">
+              Last Name <span class="required">*</span>
+            </label>
+            <br>
+            <input type="text" name="lastName" id="lastName" class="lastError">
+
+            <p class="requiredText" id="lErrorMsg">
+              This field is required
+            </p>
+
+          </div>
+        </div>
+
+
+      <br> 
+      <label for="email">
+        Email Address <span class="required">*</span>
+      </label>
       <br>
-      <input type="text" name="firstName" id="firstName">
-      <br>
-      <label for="lastName">Last Name <span class="required">*</span></label>
-      <br>
-      <input type="text" name="lastName" id="lastName">
-      <br>
-      <label for="email">Email Address <span class="required">*</span></label>
-      <br>
-      <input type="text" name="email" id="email">
+      <input type="text" name="email" id="email" class="emailError">
+      <p class="requiredText" id="eErrorMsg"></p>
       <br>
       <fieldset>
         <legend>Query Type <span class="required">*</span></legend>
-          
+        <div class="query-container">
           <label class="query-input" for="generalEnquiry">
             <input type="radio" name="query" id="generalEnquiry">
-            <span class="custom-radio"></span>
+            <span class="custom-radio">
+              <img src="./assets/images/icon-radio-selected.svg" alt="radio icon">
+            </span>
             General Enquiry
           </label>
-        
-        <br>
+          
+          <br>
 
           <label class="query-input" for="supportRequest">
-            <input type="radio" class="custom-radio" name="query" id="supportRequest">
-            <span class="custom-radio"></span>
+            <input type="radio" name="query" id="supportRequest">
+            <span class="custom-radio">
+              <img src="./assets/images/icon-radio-selected.svg" alt="radio icon">
+            </span>
             Support Request
           </label>
+        </div>
+          
+        <p class="requiredText" id="qErrorMsg">Please select a query type</p>
+
       </fieldset>
 
       <label for="message">Message <span class="required">*</span></label>
       
       <br>
 
-      <input type="text" name="message" id="message"></input>
+      <textarea name="message" id="message" class="msgError"></textarea>
+      <p class="msgError requiredText"  id="msgErrorMsg">This field is required</p>
+      
 
       <br>
       <div class="consent-box"> 
-        <input type="checkbox" name="consent" id="consent">
-        <label for="consent">I consent to being contacted by the team <span class="required">*</span></label>
+        <div class="consent">
+
+          
+          <label for="consent" id="consentLabel">
+            <input type="checkbox" name="consent" id="consent">
+            <span class="custom-check">
+              <img src="./assets/images/icon-checkbox-check.svg" alt="check Icon">
+            </span>
+            <div>
+              I consent to being contacted by the team 
+            <span class="required">*</span>
+            </div>
+
+          </label>
+        </div>
+
+        <p class="requiredText" id="cErrorMsg">To submit this form, please consent to being contacted</p>
       </div>
       <button id="submitBtn">Submit</button>
     </form>
@@ -66,7 +132,7 @@
 
   <footer>
     <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. Coded by <a href="#">Your Name Here</a>.
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. Coded by <a href="#">JubyDevs</a>.
     </div>
   </footer>
 

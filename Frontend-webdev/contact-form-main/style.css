@@ -13,11 +13,9 @@ html {
 body {
     padding: 0;
     margin: 0;
-    /* height: 100vh; */
     font-weight: 400, 700;
     display: flex;
     flex-direction: column;
-    /* place-items: center; */
     justify-content: center;
     align-items: center;
 }
@@ -37,8 +35,8 @@ h1 {
     color: hsl(187, 24%, 22%);
 }
 
-label {
-    /* margin-bottom: 10rem; */
+label,
+legend {
     color: hsl(187, 24%, 22%);
 }
 
@@ -63,7 +61,8 @@ input:focus {
 
 input:hover,
 .query-input:hover,
-button:hover {
+button:hover,
+legend {
     cursor: pointer;
 }
 
@@ -76,29 +75,32 @@ input[type="radio"] {
 }
 
 .custom-radio {
-    height: 18px;
+    display: none;
     width: 18px;
-    border: 1.px solid hsl(186, 15%, 59%);
-    position: relative;
+    height: 18px;
+    border: 2px solid hsl(186, 15%, 59%);
     border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     cursor: pointer;
     margin: 0 1rem;
 }
 
-.custom-radio:focus {
-    border: 2px solid hsl(186, 15%, 59%);
+.custom-radio img {
+    display: none;
+    width: 19px;
+    height: 19px;
 }
 
-input[type="radio"]:checked
-+ .custom-radio::after {
-    content: "";
-    width: 9px;
-    height: 9px;
-    background: hsl(169, 82%, 27%);
-    border-radius: 50%;
-    position: absolute;
-    top: 3px;
-    left: 3px;
+input[type="radio"]:checked + .custom-radio img {
+    display: block;
+
+}
+
+input[type="radio"]:checked + .custom-radio {
+    border-color: hsl(169, 82%, 27%);
 }
 
 .query-input {
@@ -110,9 +112,9 @@ input[type="radio"]:checked
     
 }
 
-.query-input:focus-within {
+.query-input:has(input:checked) {
+    border-color: hsl(169, 82%, 27%);
     background-color: hsl(148, 38%, 91%);
-    border-color: hsl(169, 82%, 27%) ;
 }
 
 fieldset {
@@ -125,19 +127,68 @@ fieldset legend {
     margin-bottom: 1rem;
 }
 
-input[name = "message"] {
-    height: 250px;
+textarea {
+    padding: 1rem;
+    border-radius: .8rem;
+    height: 15.625rem;
+    width: 100%;
+    resize: none;
+    margin: 1rem 0 1.5rem 0;
+    border: 1px solid hsl(186, 15%, 59%);
+}
+
+textarea:focus {
+    border-color: hsl(169, 82%, 27%) ;
+    outline: none;
 }
 
 .consent-box {
     display: flex;
+    flex-direction: column;
+}
+
+.consent {
+    display: flex;
     gap: 1rem;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 
 input[name = "consent"] {
     height: 20px;
     width: 20px;
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.custom-check {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid hsl(169, 82%, 27%);
+    border-radius: 0.2rem;
+}
+
+.custom-check img {
+    display: none;
+}
+
+
+
+input[type="checkbox"]:checked + .custom-check img {
+    display: block;
+}
+
+#consentLabel {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+#consentLabel:hover {
+    cursor: pointer;
 }
 
 button {
@@ -160,5 +211,100 @@ button:hover {
     text-align: center; 
 }
 
-.attribution a { 
-    color: hsl
+/* error state */
+#fErrorMsg,
+#lErrorMsg,
+#eErrorMsg,
+#qErrorMsg,
+#msgErrorMsg,
+#cErrorMsg {
+    display:none;
+}
+
+.requiredText {
+    margin: 0;
+    color: hsl(0, 66%, 54%);
+    font-size: .8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* success state */
+
+#successMsg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+#successBox {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: hsl(187, 24%, 22%);
+    padding: 1.5rem;
+    margin: 1rem 1rem 0;
+    border-radius: 1rem;
+    height: 127px;
+}
+
+#successBox p {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.success-text {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    font-weight: 700;
+}
+
+.img {
+    margin-right: .5rem;
+}
+
+.success-text p {
+    margin: 0;
+}
+
+/* breakpoints */
+
+@media (min-width: 1440px) {
+    main {
+        min-width: 50%;
+        margin: 0;
+    }
+
+    .names,
+    .query-container {
+        display: flex;
+        gap: .5rem;
+        /* border: 1px solid; */
+    }
+
+    .names div {
+        width: 100%;
+    }
+
+    input[type="text"] {
+        margin-bottom: 1rem;
+        height: 3rem;
+    }
+
+    .query-input {
+        width: 100%;
+    }
+
+    textarea {
+        height: 10rem;
+    }
+
+    #successMsg {
+        justify-content: center;
+        align-items: center;
+
+    }
+}
